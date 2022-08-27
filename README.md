@@ -8,11 +8,14 @@
 </p>
 
 <p>
-setup .env file and set database connection
-composer install
-php artisan key:generate
-php artisan migrate
-php artisan serve
+    <ul>
+        <li>setup .env file and set database connection</li>
+        <li>composer install</li>
+        <li>php artisan key:generate</li>
+        <li>php artisan migrate</li>
+        <li>php artisan serve</li>
+    </ul>
+
 </p>
 
 ## About Laravel
