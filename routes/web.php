@@ -62,3 +62,7 @@ Route::get("about-us/{name}", [SiteController::class, "about_us"]);
 
 Route::get("user-add", [SiteController::class, "user_add"]);
 Route::post("user-add", [SiteController::class, "store_user"]);
+
+
+Route::get("user-edit-{id}", [SiteController::class, "user_edit"]);
+Route::post("user-edit-{id}", [SiteController::class, "update_user"]);
