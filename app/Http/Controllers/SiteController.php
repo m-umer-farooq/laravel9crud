@@ -16,7 +16,7 @@ class SiteController extends Controller{
 
     public function list_users()
     {
-        $users = User::all();
+        $users = User::paginate(5);
 
         $data['users'] = $users;
 
