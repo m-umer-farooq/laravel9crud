@@ -63,7 +63,8 @@
         </tbody>
       </table>
 
-      {{ $users->links() }}
+      {{ $users->withQueryString()->links('pagination::bootstrap-5') }}
+      {{-- {{ $users->links() }} --}}
 
       @else
 
