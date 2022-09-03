@@ -57,12 +57,23 @@ Route::get('/user-new/{name?}/{age?}', function ($name = null,$age = null) {
     return 'Name: '.$name. ' Age: '.$age;
 });
 
-Route::get("about-us/", [SiteController::class, "index"]);
+Route::get("about-us", [SiteController::class, "index"])->name('about');
 Route::get("about-us/{name}", [SiteController::class, "about_us"]);
 
-Route::get("user-add", [SiteController::class, "user_add"]);
-Route::post("user-add", [SiteController::class, "store_user"]);
+
+Route::controller(SiteController::class)->group(function(){
+
+    Route::get("user-add",  "user_add");
+    Route::post("user-add", "store_user");
+
+    Route::get("user-edit-{id}", "user_edit");
+    Route::post("user-edit-{id}", "update_user");
+
+    Route::get("list-users", "list_users");
+    Route::get("user-delete-{id}", "user_delete");
+
+});
 
 
-Route::get("user-edit-{id}", [SiteController::class, "user_edit"]);
-Route::post("user-edit-{id}", [SiteController::class, "update_user"]);
+
+

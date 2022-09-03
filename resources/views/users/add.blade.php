@@ -85,6 +85,7 @@
                 </div>
                 <div class="form-group mt-3">
                     <input type="submit" id="btn_submit" name="btn_submit" class="btn btn-primary" value="Submit">
+                    <a href="list-users" class="btn btn-primary">Back</a>
                 </div>
             </form>
         </div>

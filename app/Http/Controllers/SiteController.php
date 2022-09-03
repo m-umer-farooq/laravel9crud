@@ -4,22 +4,43 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class SiteController extends Controller{
 
-    public function index(){
-        return view("about",['name' => '']);
-    }
-
-    public function about_us(Request $request,$name){
-
-        return view("about",['name' => $name]);
-    }
-
     public function user_add(){
 
         return view("users.add");
+    }
+
+    public function list_users()
+    {
+        $users = User::all();
+
+        $data['users'] = $users;
+
+        return view("users.list",$data);
+    }
+
+    public function user_delete(Request $request)
+    {
+        $user = User::find($request->id);
+
+        if(!empty($user)){
+
+            $response = $user->delete(); //returns true/false
+
+            if($response){
+                session()->flash('success', 'User deleted successfully.');
+            }else{
+                session()->flash('errors', 'Unable to delete user.');
+            }
+
+        }else{
+            session()->flash('errors', 'User not found.');
+        }
+        return redirect()->to('/list-users');
     }
 
     public function store_user(Request $request){
@@ -31,7 +52,6 @@ class SiteController extends Controller{
             'email'=>'required|email|unique:users,email',
             'password'=>'required|min:8',
          ]);
-
 
          $user = new User([
             "first_name" => $request->get('first_name'),
@@ -53,8 +73,9 @@ class SiteController extends Controller{
     public function user_edit(Request $request){
 
         //$user = User::where('id',$id)->first();
-        //$user = DB::table('users')->where('id', $id)->first();
-        $data['user'] = User::find($request->id);
+        //$data['user_data'] = DB::table('users')->where('id', $request->id)->first();
+        $data['user_data'] = User::find($request->id);
+        $data['page_title'] = 'Edit User';
         return view('users.edit',$data);
     }
 
@@ -80,9 +101,7 @@ class SiteController extends Controller{
             }
 
             User::where('id',$request->id)->update($user_data);
-
             session()->flash('success', 'User successfully updated.');
-
             return redirect()->to('/user-edit-'.$request->id);
     }
 
