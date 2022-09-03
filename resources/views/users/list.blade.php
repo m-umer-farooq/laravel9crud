@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" integrity="sha512-XWTTruHZEYJsxV3W/lSXG1n3Q39YIWOstqvmFsdNEEQfHoZ6vm6E9GK2OrF6DSJSpIbRbi+Nn0WDPID9O7xB2Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    @vite('resources/css/app.css')
-</head>
-<body>
-
+@extends('layouts.app')
+@section('content')
     <div class="container">
-
         @if (session()->has('success'))
             <div class="row mt-5">
                 <div class="alert alert-success">
@@ -55,8 +44,8 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->phone_number }}</td>
                 <td>
-                    <a href="user-edit-{{ $user->id }}">Edit</a>
-                    <a href="user-delete-{{ $user->id }}">Delete</a>
+                    <a href="user-edit-{{ $user->id }}" class="icon-edit"></a>&nbsp;
+                    <a href="user-delete-{{ $user->id }}" class="icon-trash"></a>
                 </td>
             </tr>
           @endforeach
@@ -67,7 +56,6 @@
       {{-- {{ $users->links() }} --}}
 
       @else
-
         <div class="row">
             <div class="col-12">
                 <div class="alert alert-danger">
@@ -75,15 +63,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
       @endif
-
-
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js" integrity="sha512-9GacT4119eY3AcosfWtHMsT5JyZudrexyEVzTBWV3viP/YfB9e2pEy3N7WXL3SV6ASXpTU0vzzSxsbfsuUH4sQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</body>
-</html>
+    @endsection

@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\DB;
 
 class SiteController extends Controller{
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function user_add(){
 
         return view("users.add");
@@ -16,7 +26,7 @@ class SiteController extends Controller{
 
     public function list_users()
     {
-        $users = User::paginate(5);
+        $users = User::orderBy('id','desc')->paginate(10);
 
         $data['users'] = $users;
 
@@ -48,7 +58,7 @@ class SiteController extends Controller{
         $this->validate($request,[
             'first_name'=>'required',
             'last_name'=>'required',
-            'phone_number'=>'required',
+            'phone_number'=>'required|numeric',
             'email'=>'required|email|unique:users,email',
             'password'=>'required|min:8',
          ]);
@@ -84,7 +94,7 @@ class SiteController extends Controller{
         $this->validate($request,[
             'first_name'=>'required',
             'last_name'=>'required',
-            'phone_number'=>'required',
+            'phone_number'=>'required|numeric',
             'email'=>'required|email|unique:users,email,'.$request->id]);
 
          $user_data = [

@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Add</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" integrity="sha512-XWTTruHZEYJsxV3W/lSXG1n3Q39YIWOstqvmFsdNEEQfHoZ6vm6E9GK2OrF6DSJSpIbRbi+Nn0WDPID9O7xB2Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
+@extends('layouts.app')
+@section('content')
 <div class="container">
 
 
@@ -85,12 +77,11 @@
                 </div>
                 <div class="form-group mt-3">
                     <input type="submit" id="btn_submit" name="btn_submit" class="btn btn-primary" value="Submit">
-                    <a href="list-users" class="btn btn-primary">Back</a>
+                    &nbsp;
+                    <input type="button" id="btn_back" name="btn_back" class="btn btn-primary" value="Back" onclick="location.href='list-users'">
                 </div>
             </form>
         </div>
     </div>
 </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js" integrity="sha512-9GacT4119eY3AcosfWtHMsT5JyZudrexyEVzTBWV3viP/YfB9e2pEy3N7WXL3SV6ASXpTU0vzzSxsbfsuUH4sQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</body>
-</html>
+@endsection
