@@ -60,24 +60,17 @@ Route::get('/user-new/{name?}/{age?}', function ($name = null,$age = null) {
 Route::get("about-us", [SiteController::class, "index"])->name('about');
 Route::get("about-us/{name}", [SiteController::class, "about_us"]);
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::controller(SiteController::class)->group(function(){
 
     Route::get("user-add",  "user_add");
     Route::post("user-add", "store_user");
-
     Route::get("user-edit-{id}", "user_edit");
     Route::post("user-edit-{id}", "update_user");
-
     Route::get("list-users", "list_users");
     Route::get("user-delete-{id}", "user_delete");
 
 });
-
-
-
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
