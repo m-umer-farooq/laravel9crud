@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             
             $table->after('last_name', function ($table) {
-                $table->enum('gender', ['male', 'female']);
+                //$table->enum('gender', ['male', 'female','null'])->default('null');
+                $table->string('gender')->default(NULL);
             });
         });
     }
